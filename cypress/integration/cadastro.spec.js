@@ -26,6 +26,18 @@ describe('Signup', () => {
         signupPage.alertMessageShouldBeValidation('É necessário informar o número do endereço');
         signupPage.alertMessageShouldBeValidation('Selecione o método de entrega');
         signupPage.alertMessageShouldBeValidation('Adicione uma foto da sua CNH');
+    }),
+
+    it('Invalid CPF', function () {
+
+        var deliver = signupFactory.deliver();
+
+        deliver.cpf = '39446408881adr'
+
+        signupPage.go();
+        signupPage.fillForm(deliver);
+        signupPage.submit();
+        signupPage.alertMessageShouldBe('Oops! CPF inválido');
     })
 
 })
