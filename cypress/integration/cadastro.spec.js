@@ -61,6 +61,17 @@ describe('Signup', () => {
         signupPage.go();
         signupPage.fillFormNotValidation(deliver);
         signupPage.alertMessageShouldBe('Informe um CEP válido');
+    }),
+
+    it('Invalid whatsapp number', function () {
+        var deliver = signupFactory.deliver();
+
+        deliver.whatsapp = 'adriano'
+
+        signupPage.go();
+        signupPage.fillFormNotValidation(deliver);
+        signupPage.submit();
+        signupPage.alertMessageShouldBe('Oops! Whatsapp com formato incorreto');
     })
 
 })
