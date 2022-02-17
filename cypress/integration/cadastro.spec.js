@@ -38,6 +38,19 @@ describe('Signup', () => {
         signupPage.fillForm(deliver);
         signupPage.submit();
         signupPage.alertMessageShouldBe('Oops! CPF inválido');
+    }),
+
+
+    it('Invalid email', function () {
+
+        var deliver = signupFactory.deliver();
+
+        deliver.email = 'adriano@adr'
+
+        signupPage.go();
+        signupPage.fillForm(deliver);
+        signupPage.submit();
+        signupPage.alertMessageShouldBe('Oops! Email com formato inválido.');
     })
 
 })
