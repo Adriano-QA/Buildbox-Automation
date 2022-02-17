@@ -51,6 +51,16 @@ describe('Signup', () => {
         signupPage.fillForm(deliver);
         signupPage.submit();
         signupPage.alertMessageShouldBe('Oops! Email com formato inválido.');
+    }),
+
+    it('Invalid postalcode', function () {
+        var deliver = signupFactory.deliver();
+
+        deliver.address.postalcode = 'adriano'
+
+        signupPage.go();
+        signupPage.fillFormNotValidation(deliver);
+        signupPage.alertMessageShouldBe('Informe um CEP válido');
     })
 
 })
